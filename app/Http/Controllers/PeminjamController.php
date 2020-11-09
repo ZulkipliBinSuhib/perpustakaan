@@ -23,6 +23,12 @@ class PeminjamController extends Controller
     }
     public function store(Request $request)
     {
+        $data = DB::table('peminjam')
+                ->where('no_peminjam',$request->no_peminjam)
+                ->first();
+        if(!empty($data)){
+            return redirect()->back()->withErrors("Peminjam dengan no peminjam {$data->no_peminjam} sudah ada . Silahkan masukkan data yang lain !!");       
+         }
         $validatedData = $request->validate([
             'no_peminjam' => 'required',
             'nama' => 'required',

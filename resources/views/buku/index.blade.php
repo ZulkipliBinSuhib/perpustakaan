@@ -24,8 +24,10 @@
                         <thead>
                             <tr class="text-center">
                                 <th>No</th>
+                                <th>kode Buku</th>
                                 <th>Judul Buku</th>
                                 <th>Penulis</th>
+                                <th>Penerbit</th>
                                 <th>Tahun Terbit</th>
                                 <th>Action</th>
                             </tr>
@@ -35,8 +37,10 @@
                             @foreach ($buku as $row)
                             <tr class="text-center">
                                 <td>{{$no++}} </td>
+                                <td>{{ $row->kode_buku}}</td>
                                 <td>{{ $row->judul_buku}}</td>
                                 <td>{{ $row->penulis_buku}}</td>
+                                <td>{{ $row->penerbit_buku}}</td>
                                 <td>{{ $row->tahun_buku}}</td>
                                 <td>
                                     <div class="d-flex justify-content-center">

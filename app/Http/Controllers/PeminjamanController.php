@@ -15,10 +15,10 @@ class PeminjamanController extends Controller
     public function index(Request $request){
         $from_date = $request ->from_date;
         $to_date = $request ->to_date;
-        $peminjaman = DB::table('peminjaman')
+        $peminjaman_detail = DB::table('peminjaman')
                             ->join('buku','peminjaman.buku','=','buku.id')
                             ->join('peminjam','peminjaman.peminjam','=','peminjam.id')
-                            ->select('peminjam.nama','peminjaman.id','peminjaman.tanggal_pinjam','peminjaman.peminjam','peminjaman.petugas','buku.judul_buku')
+                            ->select('peminjam.nama','peminjaman.id','peminjaman.tanggal_pinjam','peminjaman.peminjam','peminjaman.petugas','buku.judul_buku')->where('peminjaman.id',1)
                             ->get();
         if(isset($request->from_date)){
             $peminjaman = DB::table('peminjaman');
@@ -37,6 +37,7 @@ class PeminjamanController extends Controller
                         ->get();
         }        
         $data['peminjaman'] = $peminjaman;   
+        $data['peminjaman_detail'] = $peminjaman_detail;   
         return view('peminjaman.index',$data);
     }
 
@@ -50,6 +51,14 @@ class PeminjamanController extends Controller
     }
     public function store(Request $request)
     {
+        $data = DB::table('peminjaman')
+                ->where('tanggal_pinjam',$request->kode_buku)
+                ->where('buku',$request->buku)
+                ->where('peminjam',$request->peminjam)
+                ->first();
+        if(!empty($data)){
+            return redirect()->back()->withErrors("Peminjaman tanggal {$data->tanggal_pinjam} dengan buku {$data->buku} oleh {$data->peminjam} sudah dilakukan . Silahkan masukkan data yang lain !!");       
+         }
         $validatedData = $request->validate([
             'tanggal_pinjam' => 'required',
             'buku' => 'required',

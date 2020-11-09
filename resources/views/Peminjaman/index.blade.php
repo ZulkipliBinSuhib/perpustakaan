@@ -45,6 +45,7 @@
                                 <th>Tanggal Peminjaman</th>
                                 <th>Buku</th>
                                 <th>Peminjam</th>
+                                <th>Petugas</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -56,6 +57,7 @@
                                 <td>{{ $row->tanggal_pinjam}}</td>
                                 <td>{{ $row->judul_buku}}</td>
                                 <td>{{ $row->nama}}</td>
+                                <td>{{ $row->petugas}}</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         <a href="{{ route('peminjaman.show',$row->id) }}" data-toggle="modal" data-target="#modalDetail"
@@ -92,7 +94,7 @@
             </div>
             <div class="modal-body">
                 <table class="table table-borderless">
-                @foreach ($peminjaman as $peminjaman)
+                @foreach ($peminjaman_detail as $peminjaman)
                     <form action=""  class="form-horizontal">
                     <tr>
                         <td><label for="tanggal_pinjam" class="offset-4">Tanggal Pinjam</label> </td>

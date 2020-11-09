@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -30,14 +32,16 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $data = DB::table('users')
+                ->where('name',$request->name)
+                ->first();
+        if(!empty($data)){
+            return redirect()->back()->withErrors("Users dengan nama {$data->name} sudah ada . Silahkan masukkan data yang lain !!");       
+         }
         $validatedData = $request->validate([
             'email' => 'required',
-            'nama' => 'required',
+            'name' => 'required',
             'password' => 'required',
-            'role' =>'required'
-            
-            
-            
         ]);
         
         User::create([

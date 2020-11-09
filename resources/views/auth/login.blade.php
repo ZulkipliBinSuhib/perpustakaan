@@ -39,7 +39,7 @@
 						Login User
 					</span>
 					<span class="login100-form-avatar">
-						<img src="{{ asset('FormLogin/images/avatar-01.png')}}" alt="AVATAR">
+						<img src="{{ asset('FormLogin/images/avatar-01.jpg')}}" alt="AVATAR">
 					</span>
 
 					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
@@ -59,9 +59,7 @@
 					</div>
 					<br>
 					<hr>
-					<div class="text-center">
-						<strong>By : PUTRIAYULESS RMIK <img src="{{ asset('FormLogin/images/copyright.png')}}" alt="" width="20px" height="20px"> 2020 </strong>
-					</div>
+				
 
 					
 				</form>

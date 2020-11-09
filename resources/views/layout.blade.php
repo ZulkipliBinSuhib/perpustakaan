@@ -52,19 +52,7 @@
                             @if(Auth::user()->role == 'admin')
                             <li class="nav-item"><a class="nav-link" href="{{ route('users.index') }}">Users</a></li> 
                             @endif
-                            @if(Auth::user()->role == 'petugas')
-                            <li class="nav-item submenu dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Input</a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('buku.create')}}">Data Buku</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('peminjam.create')}}">Data Peminjam</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('peminjaman.create')}} ">Data Peminjaman</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('pengembalian.create') }}">Data Pengembalian</a></li> 
-
-                                    
-                                </ul>
-                            </li>  
-                            @endif 
+                            
 
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data Master</a>

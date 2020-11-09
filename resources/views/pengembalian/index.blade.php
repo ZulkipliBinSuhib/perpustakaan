@@ -44,6 +44,7 @@
                                 <th>Tanggal Kembali</th>
                                 <th>Buku</th>
                                 <th>Peminjam</th>
+                                <th>Petugas</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -55,12 +56,9 @@
                                 <td>{{ $row->tanggal_kembali}}</td>
                                 <td>{{ $row->judul_buku}}</td>
                                 <td>{{ $row->nama}}</td>
+                                <td>{{ $row->petugas}}</td>
                                 <td>
                                     <div class="d-flex justify-content-center"> 
-                                        <a href="{{ route('pengembalian.show',$row->id) }}" name="id" data-toggle="modal" data-target="#modalDetail"
-                                            class="btn btn-sm btn-info fas fa-eye mr-2" title="Detail" value="$row->id" ></a>
-                                        <button value="1" name="id" id="id" class="btn btn-sm btn-info fas fa-eye mr-2" title="Detail" data-toggle="modal" data-target="#modalDetail"></button>
-                                           
                                         <a href="{{ route('pengembalian.edit',$row->id) }}"
                                             class="btn btn-sm btn-warning fas fa-edit mr-2" title="Edit"></a>
                                         <form action="{{route('pengembalian.destroy',$row->id)}}" method="post" title="Hapus">
@@ -80,9 +78,9 @@
             </div>
         </div>
     </div>
-</section>
+<!-- </section>
 <!-- Modal Detail -->
-<div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="modalDetail" aria-hidden="true">
+<!-- <div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="modalDetail" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -118,15 +116,13 @@
                     </tr>
                    
                     @endforeach
-                
-               
                 </form>
                 </table>
-                <!--END FORM TAMBAH BARANG-->
+               
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- End Action -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>

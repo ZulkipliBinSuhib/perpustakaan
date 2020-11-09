@@ -23,6 +23,12 @@ class BukuController extends Controller
     }
     public function store(Request $request)
     {
+        $data = DB::table('buku')
+                ->where('kode_buku',$request->kode_buku)
+                ->first();
+        if(!empty($data)){
+            return redirect()->back()->withErrors("Buku dengan kode buku {$data->kode_buku} sudah ada . Silahkan masukkan buku yang lain !!");       
+         }
         $validatedData = $request->validate([
             'kode_buku' => 'required',
             'judul_buku' => 'required',

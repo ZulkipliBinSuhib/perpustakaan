@@ -33,6 +33,7 @@ class PengembalianController extends Controller
                         ->select('peminjam.nama','pengembalian.id','pengembalian.tanggal_kembali','pengembalian.peminjam','pengembalian.petugas','buku.judul_buku')
                         ;
         }      
+        
         $data['pengembalian'] = $pengembalian ->get();   
         if(($id)){
             $pengembalian = $pengembalian->where('pengembalian.id',$id)->get();
@@ -47,7 +48,7 @@ class PengembalianController extends Controller
         $data['peminjam'] = DB::table('peminjaman')
                                 ->join('buku','peminjaman.buku','=','buku.id')
                                 ->join('peminjam','peminjam.id','=','peminjaman.peminjam')
-                                ->select('peminjaman.peminjam','peminjaman.tanggal_kembali','buku.judul_buku','peminjaman.id','peminjam.nama')                        
+                                ->select('peminjaman.peminjam','peminjaman.tanggal_pinjam','buku.judul_buku','peminjaman.id','peminjam.nama')                        
                                 ->get();
         $petugas =  Auth::user()->name ;
         $data['petugas'] =  $petugas ;

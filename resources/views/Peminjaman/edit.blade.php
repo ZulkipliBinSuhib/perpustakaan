@@ -13,7 +13,7 @@
     <div class="col-12">
         <div class="card card-info card-outline text-sm-3">
             <div class="card-header bg-info">
-                <h4 class="card-title text-light"> <i class="fas fa-edit text-light mr-2"></i>Form Input Buku
+                <h4 class="card-title text-light"> <i class="fas fa-edit text-light mr-2"></i>Form Update Status
                 </h4>
             </div>
             <div class="card-body">
@@ -22,23 +22,24 @@
                     <form action=""  class="form-horizontal">
                     <tr>
                         <td><label for="tanggal_pinjam" class="offset-4">Tanggal Pinjam</label> </td>
-                        <td>{{ Form::date('tanggal_pinjam',null,['placeholder'=>'','class'=>'form-control col-9 ','required'])}}
+                        <td>{{ Form::date('tanggal_pinjam',null,['placeholder'=>'','class'=>'form-control col-9 ','required','readonly'])}}
                     </tr>
-                   <tr>
-                        <td><label for="id_buku" class="offset-4">Buku</label> </td>
-                        <td>{{ Form::text('id_buku',null,['class'=>'form-control col-9','required'])}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="peminjam" class="offset-4">Peminjam</label> </td>
-                        <td>{{ Form::text('peminjam',null,['placeholder'=>'','class'=>'form-control col-9 ','required'])}}
-                        </td>
-                    </tr>
+                       {{ Form::hidden('buku',null,['class'=>'form-control col-9','required'])}}
+                       {{ Form::hidden('peminjam',null,['placeholder'=>'','class'=>'form-control col-9 ','required'])}}
                     <tr>
                         <td><label for="petugas" class="offset-4">Petugas</label> </td>
-                        <td>{{ Form::text('petugas',null,['placeholder'=>'','class'=>'form-control col-9 ','required'])}}
+                        <td>{{ Form::text('petugas',null,['placeholder'=>'','class'=>'form-control col-9 ','required','readonly'])}}
                         </td>
                     </tr>
+                    <tr>
+                        <td><label for="status" class="offset-4">Status</label> </td>
+                        <td>{{ Form::select('status',['0'=>'Dipinjam','1'=>'Dikembalikan'],null,['class'=>'form-control col-9','required'])}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" value="{{$date}}" name="tanggal_kembali" id="tanggal_kembali" readonly required></td>
+                    </tr>
+                        <input type="hidden" name="petugas_b" value="{{$petugas_b}}">   
                   
                 </table>
                 

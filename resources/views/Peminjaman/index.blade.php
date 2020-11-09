@@ -42,10 +42,13 @@
                         <thead>
                             <tr class="text-center">
                                 <th>No</th>
-                                <th>Tanggal Peminjaman</th>
                                 <th>Buku</th>
                                 <th>Peminjam</th>
+                                <th>Tanggal Peminjaman</th>
                                 <th>Petugas</th>
+                                <th>Tanggal Kembali</th>
+                                <th>Petugas</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -54,22 +57,28 @@
                             @foreach ($peminjaman as $row)
                             <tr class="text-center">
                                 <td>{{$no++}} </td>
-                                <td>{{ $row->tanggal_pinjam}}</td>
                                 <td>{{ $row->judul_buku}}</td>
                                 <td>{{ $row->nama}}</td>
+                                <td>{{ $row->tanggal_pinjam}}</td>
                                 <td>{{ $row->petugas}}</td>
+                                <td>{{ $row->tanggal_kembali}}</td>
+                                <td>{{ $row->petugas_b}}</td>
+                                <td>{!! $row->status ? '<span class=" " >Dikembalikan</span>' : '<span class="">Dipinjam</span>'!!}</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         <a href="{{ route('peminjaman.show',$row->id) }}" data-toggle="modal" data-target="#modalDetail"
                                             class="btn btn-sm btn-info fas fa-eye mr-2" title="Detail"></a>
+                                        @if(!$row->status)
                                         <a href="{{ route('peminjaman.edit',$row->id) }}"
-                                            class="btn btn-sm btn-warning fas fa-edit mr-2" title="Edit"></a>
+                                            class="btn btn-sm btn-warning fas fa-edit mr-2" title="Ubah Status"></a>
+                                        @endif
                                         <form action="{{route('peminjaman.destroy',$row->id)}}" method="post" title="Hapus">
                                             @csrf
                                             @method('Delete')
                                             <button class="btn btn-danger btn-sm fas fa-trash-alt "
                                                 onclick="return confirm('Yakin Mau di Hapus ?')" type="submit"></button>
                                         </form>
+                                        
                                     </div>
                                 </td>
                             </tr>

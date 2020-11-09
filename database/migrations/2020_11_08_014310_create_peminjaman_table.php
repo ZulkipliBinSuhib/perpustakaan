@@ -16,9 +16,12 @@ class CreatePeminjamanTable extends Migration
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id();
             $table->date('tanggal_pinjam');
+            $table->date('tanggal_kembali')->nullable();
             $table->integer('buku');
             $table->string('peminjam');
             $table->string('petugas');
+            $table->string('petugas_b')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

@@ -30,10 +30,10 @@ class HomeController extends Controller
         $get_data = DB::table('peminjaman')
                 ->join('buku','buku.id','=','peminjaman.buku')
                 ->join('peminjam','peminjaman.peminjam','=','peminjam.id')
-                ->join('pengembalian','buku.id','=','pengembalian.buku')
-                ->select('pengembalian.tanggal_kembali','peminjaman.tanggal_pinjam','buku.judul_buku','peminjaman.peminjam','peminjam.nama')
+                ->select('peminjaman.tanggal_kembali','peminjaman.tanggal_pinjam','buku.judul_buku','peminjaman.peminjam','peminjam.nama')
                 ->orderBy('peminjaman.id')->get();
         
+       
         $data['get_data'] = $get_data;
         return view('home',$data);
     }

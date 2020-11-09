@@ -60,7 +60,6 @@
                                     <li class="nav-item"><a class="nav-link" href="{{ route('buku.index')}}">Data buku</a></li>
                                     <li class="nav-item"><a class="nav-link" href="{{ route('peminjam.index')}}">Data Peminjam</a></li>
                                     <li class="nav-item"><a class="nav-link" href="{{ route('peminjaman.index')}} ">Data Peminjaman</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('pengembalian.index')}}">Data Pengembalian</a></li>
                                     
                                 </ul>
                             </li>  

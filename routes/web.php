@@ -27,4 +27,6 @@ Route::resource('/peminjaman', 'PeminjamanController');
 Route::resource('/pengembalian', 'PengembalianController');
 Route::resource('/users', 'UsersController');
 Route::resource('/peminjam', 'PeminjamController');
+Route::get('peminjaman/{id}/dipinjam','PeminjamanController@dipinjam')->name('peminjaman.dipinjam');
+
 

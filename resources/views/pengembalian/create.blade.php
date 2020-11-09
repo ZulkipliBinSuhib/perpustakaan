@@ -33,17 +33,13 @@
                     </tr>
                     <tr>
                         <td><input type="hidden" value="{{$date}}" name="tanggal_kembali" id="tanggal_kembali" readonly required></td>
-                        
                     </tr>
                     <tr>
                         <td><label for="buku" class="offset-4">Buku</label> </td>
                         <td><input type="text" class="buku form-control col-9" name="buku" id="buku" readonly  required></td>
                         </td>
                     </tr>
-                    
-                    <tr>
-                        <td><input type="hidden" name="petugas" value="{{$petugas}}"></td>
-                    </tr>
+                        <input type="hidden" name="petugas" value="{{$petugas}}">
                     
                    </table>
                 

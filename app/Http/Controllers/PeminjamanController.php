@@ -18,14 +18,14 @@ class PeminjamanController extends Controller
         $peminjaman_detail = DB::table('peminjaman')
                             ->join('buku','peminjaman.buku','=','buku.id')
                             ->join('peminjam','peminjaman.peminjam','=','peminjam.id')
-                            ->select('peminjam.nama','peminjaman.id','peminjaman.tanggal_pinjam','peminjaman.peminjam','peminjaman.petugas','buku.judul_buku')->where('peminjaman.id',1)
+                            ->select('peminjaman.status','peminjaman.tanggal_kembali','peminjam.nama','peminjaman.id','peminjaman.tanggal_pinjam','peminjaman.peminjam','peminjaman.petugas','peminjaman.petugas_b','buku.judul_buku')->where('peminjaman.id',1)
                             ->get();
         if(isset($request->from_date)){
             $peminjaman = DB::table('peminjaman');
             $peminjaman = DB::table('peminjaman')
                         ->join('buku','peminjaman.buku','=','buku.id')
                         ->join('peminjam','peminjaman.peminjam','=','peminjam.id')
-                        ->select('peminjam.nama','peminjaman.id','peminjaman.tanggal_pinjam','peminjaman.peminjam','peminjaman.petugas','buku.judul_buku')
+                        ->select('peminjaman.status','peminjaman.tanggal_kembali','peminjam.nama','peminjaman.id','peminjaman.tanggal_pinjam','peminjaman.peminjam','peminjaman.petugas','peminjaman.petugas_b','buku.judul_buku')
                         ->whereBetween('tanggal_pinjam', array($from_date, $to_date))
                         ->get();
         }else{
@@ -33,7 +33,7 @@ class PeminjamanController extends Controller
             $peminjaman = DB::table('peminjaman')
                         ->join('buku','peminjaman.buku','=','buku.id')
                         ->join('peminjam','peminjaman.peminjam','=','peminjam.id')
-                        ->select('peminjam.nama','peminjaman.id','peminjaman.tanggal_pinjam','peminjaman.peminjam','peminjaman.petugas','buku.judul_buku')
+                        ->select('peminjaman.status','peminjam.nama','peminjaman.tanggal_kembali','peminjaman.id','peminjaman.tanggal_pinjam','peminjaman.peminjam','peminjaman.petugas','peminjaman.petugas_b','buku.judul_buku')
                         ->get();
         }        
         $data['peminjaman'] = $peminjaman;   
@@ -77,7 +77,11 @@ class PeminjamanController extends Controller
     }
     public function edit($id)
     {
-        $peminjaman = DB::table('peminjaman')->where('id',$id)->first();
+        $petugas =  Auth::user()->name ;
+        $data['petugas_b'] =  $petugas ;
+        $data['date'] = date('Y-m-d');
+        $peminjaman = DB::table('peminjaman')
+        ->where('id',$id)->first();
         $data['peminjaman'] = $peminjaman;
         return view('peminjaman.edit',$data); 
     }
@@ -92,9 +96,13 @@ class PeminjamanController extends Controller
         
         DB::table('peminjaman')->where('id',$id)->update([
             'tanggal_pinjam'=>$request->tanggal_pinjam,
+            'tanggal_kembali'=>$request->tanggal_kembali,
             'buku'=>$request->buku,
             'peminjam'=>$request->peminjam,
             'petugas'=>$request->petugas,
+            'petugas_b'=>$request->petugas_b,
+            'status'=>$request->status,
+
         
              ]);    
         return redirect('peminjaman')->with('status', 'Data updated successfully.');
@@ -113,5 +121,9 @@ class PeminjamanController extends Controller
                     ->where('id',$id)->first();
         $data['peminjaman'] = $peminjaman;
         return view('peminjaman.index',$data); 
+    }
+    public function dipinjam(Request $request, $id){
+        $peminjaman = DB::table('peminjaman')->where('id',$id)->update(['dipinjam'=>1]);
+        return redirect()->back();
     }
 }

@@ -37,7 +37,7 @@
                         <button type="submit" name="" id="" class="btn btn-info ml-1"> Filter</a>
                     </div>
                 </form>
-                    <a href="{{ route('peminjaman.create')}} "><i class="fas fa-plus-circle"></i>Tambah Data</a>
+                    <a href="{{ route('peminjaman.create')}} " type="button" class="btn  float-right mb-1"><i class="fas fa-plus-circle"></i>Tambah Data</a>
                     <table class="table table-bordered table-striped" id="list_peminjaman">
                         <thead>
                             <tr class="text-center">
@@ -61,8 +61,8 @@
                                 <td>{{ $row->nama}}</td>
                                 <td>{{ $row->tanggal_pinjam}}</td>
                                 <td>{{ $row->petugas}}</td>
-                                <td>{{ $row->tanggal_kembali}}</td>
-                                <td>{{ $row->petugas_b}}</td>
+                                <td>{{empty($row->tanggal_kembali) ? 'Belum Melakakukan Pengembalian' : $row->tanggal_kembali}}</td>
+                                <td>{{empty($row->petugas_b) ? 'Belum Melakakukan Pengembalian' : $row->petugas_b}}</td>
                                 <td>{!! $row->status ? '<span class=" " >Dikembalikan</span>' : '<span class="">Dipinjam</span>'!!}</td>
                                 <td>
                                     <div class="d-flex justify-content-center">

@@ -19,7 +19,7 @@
                  
                 </div>
                 <div class="card-body table-responsive">
-                    <a href="{{ route('users.create')}} "><i class="fas fa-plus-circle"></i>Tambah Data</a>
+                    <a href="{{ route('users.create')}} " type="button" class="btn  float-right mb-1"><i class="fas fa-plus-circle"></i>Tambah Data</a>
                     <table class="table table-bordered table-striped" id="list_users">
                         <thead>
                             <tr class="text-center">
@@ -40,9 +40,6 @@
                                 <td>{{ $row->role}}</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        
-                                        <a href="{{ route('users.edit',$row->id) }}"
-                                            class="btn btn-sm btn-warning fas fa-edit mr-2" title="Edit"></a>
                                         <form action="{{route('users.destroy',$row->id)}}" method="post" title="Hapus">
                                             @csrf
                                             @method('Delete')

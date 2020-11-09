@@ -19,7 +19,7 @@
                  
                 </div>
                 <div class="card-body table-responsive">
-                    <a href="{{ route('peminjam.create')}} "><i class="fas fa-plus-circle"></i>Tambah Data</a>
+                    <a href="{{ route('peminjam.create')}} " type="button" class="btn  float-right mb-1"><i class="fas fa-plus-circle"></i>Tambah Data</a>
                     <table class="table table-bordered table-striped" id="list_peminjam">
                         <thead>
                             <tr class="text-center">
